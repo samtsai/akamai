@@ -70,7 +70,7 @@ function purgeRequest( fileList, options, auth, done ) {
 
   request(requestOpts, function (error, response, body) {
     if(response.statusCode == 201){
-			done(body);
+      console.log('Estimated complete in ' + body.estimatedSeconds + ' seconds');
     } else {
       console.log('error: '+ error + ' with response status code ' + response.statusCode)
       console.log('body: ' + body);
