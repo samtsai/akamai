@@ -16,6 +16,11 @@
     "flush",
     "purge"
   ],
+  "contributors": [
+      { "name": "Rafael Guedes", "email": "rafaelmenta@gmail.com" }
+    , { "name": "Rafael Paiva", "email": "rafaelpaivabh@gmail.com" }
+    , { "name": "André Almeida", "email": "andrebot_almeida@hotmail.com" }
+  ],
   "author": "Sam Tsai",
   "license": "ISC",
   "bugs": {
