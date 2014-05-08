@@ -1,0 +1,29 @@
+{
+  "name": "akamai",
+  "version": "0.0.0",
+  "description": "A node service to interface with Akamai's Content Control Utility REST api",
+  "main": "akamai.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/samtsai/akamai.git"
+  },
+  "keywords": [
+    "akamai",
+    "cdn",
+    "flush",
+    "purge"
+  ],
+  "author": "Sam Tsai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samtsai/akamai/issues"
+  },
+  "homepage": "https://github.com/samtsai/akamai",
+  "dependencies": {
+    "request": "^2.34.0",
+    "util-extend": "^1.0.1"
+  }
+}
