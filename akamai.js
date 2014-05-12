@@ -32,7 +32,7 @@ Queue Length (GET api.ccu.akamai.com/ccu/v2/queues/default)
 Returns the number of outstanding objects in the user's queue.
 */
 function purgeRequest( fileList, options, auth, done ) {
-  //makeRequest('purge', )
+
   var apiDef = apiDefaults['purge'];
   var requestUri = host + apiDef.route;
   var requestOpts;
@@ -66,8 +66,6 @@ function purgeRequest( fileList, options, auth, done ) {
     'json': opts
   };
 
-  console.log('request options', requestOpts);
-
   request(requestOpts, function (error, response, body) {
     if(response.statusCode == 201){
       console.log('Estimated complete in ' + body.estimatedSeconds + ' seconds');
@@ -75,15 +73,99 @@ function purgeRequest( fileList, options, auth, done ) {
       console.log('error: '+ error + ' with response status code ' + response.statusCode)
       console.log('body: ' + body);
     }
+
+    if (done) {
+      done(error, response, body);
+    }
+
   });
 }
 
-function purgeStatus( ) {
+function purgeStatus(purgeId, options, auth, done) {
 
+  if (!purgeId) {
+    throw new Error('A purge id is needed to check for')
+  }
+
+  var apiDef = apiDefaults['status'];
+  var requestUri = host + apiDef.route + purgeId;
+  var requestOpts;
+  var opts = {
+    'type': 'arl',
+    'domain': 'production',
+    'action': 'remove'
+  };
+
+  if (!auth) {
+    throw new Error('No credentials, no access... Auth required');
+  }
+
+  if (options && typeof options === 'object') {
+    opts = extend(opts, options);
+  }
+
+  requestOpts = {
+    'uri': requestUri,
+    'method': apiDef.method,
+    'auth': auth,
+    'json': opts
+  };
+
+  request(requestOpts, function (error, response, body) {
+    if(response.statusCode == 200){
+      console.log('Purge submitted by ' + body.submittedBy + ' is ' + body.purgeStatus);
+      console.log('Original estimated time to conplete is ' + body.originalEstimatedSeconds + ' seconds. Completion time is ' + body.completionTime + ' seconds');
+    } else {
+      console.log('error: '+ error + ' with response status code ' + response.statusCode)
+      console.log('body: ' + body);
+    }
+
+    if (done) {
+      done(error, response, body);
+    }
+
+  });
 }
 
-function queueLength( ) {
+function queueLength(options, auth, done) {
 
+  var apiDef = apiDefaults['queue'];
+  var requestUri = host + apiDef.route;
+  var requestOpts;
+  var opts = {
+    'type': 'arl',
+    'domain': 'production',
+    'action': 'remove'
+  };
+
+  if (!auth) {
+    throw new Error('No credentials, no access... Auth required');
+  }
+
+  if (options && typeof options === 'object') {
+    opts = extend(opts, options);
+  }
+
+  requestOpts = {
+    'uri': requestUri,
+    'method': apiDef.method,
+    'auth': auth,
+    'json': opts
+  };
+
+  request(requestOpts, function (error, response, body) {
+    if(response.statusCode == 200){
+      console.log('Current queue length is ' + body.queueLength);
+    } else {
+      console.log('error: '+ error + ' with response status code ' + response.statusCode)
+      console.log('body: ' + body);
+    }
+
+    if (done) {
+      done(error, response, body);
+    }
+
+  });
 }
 
 module.exports = {
