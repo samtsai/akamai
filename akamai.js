@@ -114,7 +114,7 @@ function purgeStatus(purgeId, options, auth, done) {
   request(requestOpts, function (error, response, body) {
     if(response.statusCode == 200){
       console.log('Purge submitted by ' + body.submittedBy + ' is ' + body.purgeStatus);
-      console.log('Original estimated time to conplete is ' + body.originalEstimatedSeconds + ' seconds. Completion time is ' + body.completionTime + ' seconds');
+      console.log('Original estimated time to complete is ' + body.originalEstimatedSeconds + ' seconds. Completion time is ' + body.completionTime + ' seconds');
     } else {
       console.log('error: '+ error + ' with response status code ' + response.statusCode)
       console.log('body: ' + body);
