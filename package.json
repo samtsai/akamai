@@ -1,6 +1,6 @@
 {
   "name": "akamai-rest",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A node service to interface with Akamai's Content Control Utility REST api",
   "main": "akamai.js",
   "scripts": {
