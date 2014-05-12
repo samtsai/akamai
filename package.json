@@ -1,6 +1,6 @@
 {
   "name": "akamai-rest",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A node service to interface with Akamai's Content Control Utility REST api",
   "main": "akamai.js",
   "scripts": {
@@ -17,9 +17,18 @@
     "purge"
   ],
   "contributors": [
-      { "name": "Rafael Guedes", "email": "rafaelmenta@gmail.com" }
-    , { "name": "Rafael Paiva", "email": "rafaelpaivabh@gmail.com" }
-    , { "name": "André Almeida", "email": "andrebot_almeida@hotmail.com" }
+    {
+      "name": "Rafael Guedes",
+      "email": "rafaelmenta@gmail.com"
+    },
+    {
+      "name": "Rafael Paiva",
+      "email": "rafaelpaivabh@gmail.com"
+    },
+    {
+      "name": "André Almeida",
+      "email": "andrebot_almeida@hotmail.com"
+    }
   ],
   "author": "Sam Tsai",
   "license": "ISC",
