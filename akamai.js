@@ -69,6 +69,7 @@ function purgeRequest( fileList, options, auth, done ) {
   request(requestOpts, function (error, response, body) {
     if(response.statusCode == 201){
       console.log('Estimated complete in ' + body.estimatedSeconds + ' seconds');
+      console.log('Track the request by the purge id: ' + body.purgeId);
     } else {
       console.log('error: '+ error + ' with response status code ' + response.statusCode)
       console.log('body: ' + body);
