@@ -17,20 +17,11 @@ describe('Akamai Library', function() {
   });
 
   it('should require auth to perform any request', function() {
-    // empty out auth
-    auth = {};
+    akamai.flush.should.throw(Error);
 
-    (function() {
-      akamai.flush()
-    }).should.throw(Error);
+    akamai.flushStatus.should.throw(Error);
 
-    (function() {
-      akamai.flushStatus()
-    }).should.throw(Error);
-
-    (function() {
-      akamai.queue()
-    }).should.throw(Error);
+    akamai.queue.should.throw(Error);
   });
 
   it('should handle flushing one file', function( done ) {
