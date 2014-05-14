@@ -44,6 +44,7 @@ function purgeRequest( fileList, options, auth, done ) {
 
 	if (!auth) {
 		throw new Error('No credentials, no access... Auth required');
+    // done(new Error('No credentials, no access... Auth required'));
 	}
 
   if (!fileList) {
