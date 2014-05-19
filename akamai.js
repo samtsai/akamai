@@ -85,10 +85,6 @@ function purgeRequest( fileList, options, auth, done ) {
 
 function purgeStatus(purgeId, options, auth, done) {
 
-  if (!purgeId) {
-    throw new Error('A purge id is needed to check for')
-  }
-
   var apiDef = apiDefaults['status'];
   var requestUri = host + apiDef.route + purgeId;
   var requestOpts;
@@ -100,6 +96,10 @@ function purgeStatus(purgeId, options, auth, done) {
 
   if (!auth) {
     throw new Error('No credentials, no access... Auth required');
+  }
+
+  if (!purgeId) {
+    throw new Error('A purge id is needed to check for')
   }
 
   if (options && typeof options === 'object') {
