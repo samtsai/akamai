@@ -33,7 +33,7 @@ Returns the number of outstanding objects in the user's queue.
 */
 function purgeRequest( fileList, options, auth, done ) {
 
-  var apiDef = apiDefaults['purge'];
+  var apiDef = apiDefaults.purge;
   var requestUri = host + apiDef.route;
   var requestOpts;
   var opts = {
@@ -85,7 +85,7 @@ function purgeRequest( fileList, options, auth, done ) {
 
 function purgeStatus(purgeId, options, auth, done) {
 
-  var apiDef = apiDefaults['status'];
+  var apiDef = apiDefaults.status;
   var requestUri = host + apiDef.route + purgeId;
   var requestOpts;
   var opts = {
@@ -99,7 +99,7 @@ function purgeStatus(purgeId, options, auth, done) {
   }
 
   if (!purgeId) {
-    throw new Error('A purge id is needed to check for')
+    throw new Error('A purge id is needed to check for');
   }
 
   if (options && typeof options === 'object') {
@@ -131,7 +131,7 @@ function purgeStatus(purgeId, options, auth, done) {
 
 function queueLength(options, auth, done) {
 
-  var apiDef = apiDefaults['queue'];
+  var apiDef = apiDefaults.queue;
   var requestUri = host + apiDef.route;
   var requestOpts;
   var opts = {
@@ -159,7 +159,7 @@ function queueLength(options, auth, done) {
     if(response.statusCode == 200){
       console.log('Current queue length is ' + body.queueLength);
     } else {
-      console.log('error: '+ error + ' with response status code ' + response.statusCode)
+      console.log('error: '+ error + ' with response status code ' + response.statusCode);
       console.log('body: ' + body);
     }
 
