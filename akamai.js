@@ -38,14 +38,13 @@ function purgeRequest( fileList, options, auth, done ) {
   var requestOpts;
   var opts = {
     'type': 'arl',
-		'domain': 'production',
-		'action': 'remove'
+    'domain': 'production',
+    'action': 'remove'
   };
 
-	if (!auth) {
-		throw new Error('No credentials, no access... Auth required');
-    // done(new Error('No credentials, no access... Auth required'));
-	}
+  if (!auth) {
+    throw new Error('No credentials, no access... Auth required');
+  }
 
   if (!fileList) {
     throw new Error('Nothing to flush... File list required');
@@ -63,27 +62,22 @@ function purgeRequest( fileList, options, auth, done ) {
   requestOpts = {
     'uri': requestUri,
     'method': apiDef.method,
-		'auth': auth,
+    'auth': auth,
     'json': opts
   };
 
-  request(requestOpts, function (error, response, body) {
-    if(response.statusCode == 201){
-      console.log('Estimated complete in ' + body.estimatedSeconds + ' seconds');
-      console.log('Track the request by the purge id: ' + body.purgeId);
-    } else {
-      console.log('error: '+ error + ' with response status code ' + response.statusCode)
-      console.log('body: ' + body);
-    }
-
+  request.post(requestOpts, function (error, response, body) {
     if (done) {
       done(error, response, body);
     }
-
   });
 }
 
 function purgeStatus(purgeId, options, auth, done) {
+
+  if (!purgeId) {
+    throw new Error('A purge id is needed to check for')
+  }
 
   var apiDef = apiDefaults.status;
   var requestUri = host + apiDef.route + purgeId;
@@ -98,10 +92,6 @@ function purgeStatus(purgeId, options, auth, done) {
     throw new Error('No credentials, no access... Auth required');
   }
 
-  if (!purgeId) {
-    throw new Error('A purge id is needed to check for');
-  }
-
   if (options && typeof options === 'object') {
     opts = extend(opts, options);
   }
@@ -113,19 +103,10 @@ function purgeStatus(purgeId, options, auth, done) {
     'json': opts
   };
 
-  request(requestOpts, function (error, response, body) {
-    if(response.statusCode == 200){
-      console.log('Purge submitted by ' + body.submittedBy + ' is ' + body.purgeStatus);
-      console.log('Original estimated time to complete is ' + body.originalEstimatedSeconds + ' seconds. Completion time is ' + body.completionTime + ' seconds');
-    } else {
-      console.log('error: '+ error + ' with response status code ' + response.statusCode)
-      console.log('body: ' + body);
-    }
-
+  request.get(requestOpts, function (error, response, body) {
     if (done) {
       done(error, response, body);
     }
-
   });
 }
 
@@ -155,18 +136,10 @@ function queueLength(options, auth, done) {
     'json': opts
   };
 
-  request(requestOpts, function (error, response, body) {
-    if(response.statusCode == 200){
-      console.log('Current queue length is ' + body.queueLength);
-    } else {
-      console.log('error: '+ error + ' with response status code ' + response.statusCode);
-      console.log('body: ' + body);
-    }
-
+  request.get(requestOpts, function (error, response, body) {
     if (done) {
       done(error, response, body);
     }
-
   });
 }
 
