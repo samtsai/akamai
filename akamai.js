@@ -33,7 +33,7 @@ Returns the number of outstanding objects in the user's queue.
 */
 function purgeRequest( fileList, options, auth, done ) {
 
-  var apiDef = apiDefaults['purge'];
+  var apiDef = apiDefaults.purge;
   var requestUri = host + apiDef.route;
   var requestOpts;
   var opts = {
@@ -79,7 +79,7 @@ function purgeStatus(purgeId, options, auth, done) {
     throw new Error('A purge id is needed to check for')
   }
 
-  var apiDef = apiDefaults['status'];
+  var apiDef = apiDefaults.status;
   var requestUri = host + apiDef.route + purgeId;
   var requestOpts;
   var opts = {
@@ -112,7 +112,7 @@ function purgeStatus(purgeId, options, auth, done) {
 
 function queueLength(options, auth, done) {
 
-  var apiDef = apiDefaults['queue'];
+  var apiDef = apiDefaults.queue;
   var requestUri = host + apiDef.route;
   var requestOpts;
   var opts = {
