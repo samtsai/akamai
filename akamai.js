@@ -73,34 +73,24 @@ function purgeRequest( fileList, options, auth, done ) {
   });
 }
 
-function purgeStatus(purgeId, options, auth, done) {
-
-  if (!purgeId) {
-    throw new Error('A purge id is needed to check for')
-  }
+function purgeStatus(purgeId, auth, done) {
 
   var apiDef = apiDefaults.status;
   var requestUri = host + apiDef.route + purgeId;
   var requestOpts;
-  var opts = {
-    'type': 'arl',
-    'domain': 'production',
-    'action': 'remove'
-  };
 
   if (!auth) {
     throw new Error('No credentials, no access... Auth required');
   }
 
-  if (options && typeof options === 'object') {
-    opts = extend(opts, options);
+  if (!purgeId) {
+    throw new Error('A purge id is needed to check status');
   }
 
   requestOpts = {
     'uri': requestUri,
     'method': apiDef.method,
-    'auth': auth,
-    'json': opts
+    'auth': auth
   };
 
   request.get(requestOpts, function (error, response, body) {

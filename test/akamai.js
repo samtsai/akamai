@@ -153,66 +153,8 @@ describe('Akamai Library', function() {
 
   describe('flushStatus', function() {
 
-    it('should have a flushStatus function', function() {
-      akamai.should.have.property('flushStatus');
-      akamai.flushStatus.should.be.a('function');
-    });
-
-    it('should expect a given purge id', function() {
-      try {
-        purgeId = null;
-        akamai.flushStatus(purgeId, opts, auth);
-      } catch (err) {
-        err.should.match(/purge id is needed/);
-      }
-    });
-
-    it('should expect credentials', function() {
-      try {
-        auth = null;
-        akamai.flushStatus(purgeId, opts, auth);
-      } catch (err) {
-        err.should.match(/Auth required/);
-      }
-    });
-
-    it('should extend request options' , function() {
-      stub = sinon.stub(request, 'get');
-      opts.domain = 'staging';
-      var exptectedOpts = {
-        json: { domain: 'staging' }
-      };
-
-      akamai.flushStatus(purgeId, opts, auth);
-      request.get.should.be.calledWithMatch(exptectedOpts);
-    });
-
-    it('should give me unauthorized error when no valid credentials is passed', function(done) {
-      stub = sinon.stub(request, 'get');
-      stub.yields(
-        response.authFail.err,
-        response.authFail.response,
-        response.authFail.body);
-      akamai.flushStatus(purgeId, opts, auth, function(error, response, body) {
-        response.statusCode.should.equal(401);
-        done();
-      });
-    });
-
-    it('should return purge status information', function(done) {
-      stub = sinon.stub(request, 'post');
-      stub.yields(
-        response.success.purgeStatus.err,
-        response.success.purgeStatus.response,
-        response.success.purgeStatus.body);
-
-      akamai.flush(fileList, opts, auth, function(error, response, body) {
-        response.statusCode.should.equal(200);
-        body.purgeStatus.should.be.ok;
-        done();
-      });
-    });
-
+    akamai.should.have.property('flush');
+    akamai.flush(singleFile, {}, auth);
   });
 
   describe('queue', function() {
