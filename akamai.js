@@ -31,6 +31,19 @@ Each purge request returns a link to the status information for that request. Us
 Queue Length (GET api.ccu.akamai.com/ccu/v2/queues/default)
 Returns the number of outstanding objects in the user's queue.
 */
+
+/*
+Response
+{
+   "httpStatus" : 201,
+   "detail" : "Request accepted.",
+   "estimatedSeconds" : 420,
+   "purgeId" : "95b5a092-043f-4af0-843f-aaf0043faaf0",
+   "progressUri" : "/ccu/v2/purges/95b5a092-043f-4af0-843f-aaf0043faaf0",
+   "pingAfterSeconds" : 420,
+   "supportId" : "17PY1321286429616716-211907680"
+}
+*/
 function purgeRequest( fileList, options, auth, done ) {
 
   var apiDef = apiDefaults.purge;
