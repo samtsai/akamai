@@ -39,5 +39,10 @@
   "dependencies": {
     "request": "^2.34.0",
     "util-extend": "^1.0.1"
+  },
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "mocha": "^1.18.2",
+    "sinon": "^1.10.2"
   }
 }
