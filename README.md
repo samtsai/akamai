@@ -3,8 +3,16 @@ akamai
 
 Node Akamai service library
 
-## Work in progress
+This library accesses the CCU REST API: https://api.ccu.akamai.com/ccu/v2/docs/index.html.
 
-Initial add only supports `purgeRequest` aka `flush`
+### Note: on NPM the package is called 'akamai-rest'
 
-Eventually, complete out the rest of the api (status and queue)
+Another library already exists as well: https://github.com/mrlannigan/node-akamai
+
+## Installation
+
+Run the following command to install it:
+
+```console
+npm install akamai-rest
+```
